@@ -14,6 +14,6 @@ def index(request):
     )
 
 
-def detail(request, id):
-    book = get_object_or_404(models.Book, pk=id)
+def detail(request, slug):
+    book = get_object_or_404(models.Book, slug=slug)
     return render(request, "book_outlet/detail.html", {"book": book})
