@@ -14,7 +14,7 @@ class Book(models.Model):
         ]
     )
     is_best_seller = models.BooleanField(default=False)
-    slug = models.SlugField(blank=True)
+    slug = models.SlugField(default="", db_index=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
