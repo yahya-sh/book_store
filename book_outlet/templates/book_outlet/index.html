@@ -1,8 +1,8 @@
 {% extends "book_outlet/base.html" %}
 
 {% block title %}All Books{% endblock  %}
+{% block content %}
 <h1>All Books</h1>
-
 <ul>
     {% for book in book_list %}
     <li>
@@ -12,3 +12,4 @@
     </li>
     {% endfor %}
 </ul>
+{% endblock  %}
