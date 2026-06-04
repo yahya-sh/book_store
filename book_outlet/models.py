@@ -1,6 +1,6 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
-
+from django.urls import reverse
 
 # Create your models here.
 class Book(models.Model):
@@ -13,3 +13,7 @@ class Book(models.Model):
         ]
     )
     is_best_seller = models.BooleanField(default=False)
+
+    def get_absolute_url(self):
+        return reverse("detail", kwargs={"id": self.pk})
+    
