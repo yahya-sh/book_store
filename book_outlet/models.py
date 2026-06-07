@@ -14,7 +14,7 @@ class Book(models.Model):
         ]
     )
     is_best_seller = models.BooleanField(default=False)
-    slug = models.SlugField(default="", db_index=True)
+    slug = models.SlugField(default="", db_index=True, editable=False)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
@@ -22,4 +22,8 @@ class Book(models.Model):
 
     def get_absolute_url(self):
         return reverse("detail", args=[self.slug])
+    
+    def __str__(self):
+        return self.title
+    
     
