@@ -44,9 +44,10 @@ class BookAdmin(admin.ModelAdmin):
     list_filter = (
         "is_best_seller",
         RatingFilter,
+        "author",
     )
     prepopulated_fields = {
-        "slug": ('title',),
+        "slug": ("title",),
     }
 
 
