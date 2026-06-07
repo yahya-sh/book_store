@@ -1,7 +1,11 @@
 from django.contrib import admin
+from django.urls import reverse
 from . import models
 from django.utils.translation import gettext as _
+from django.utils.html import format_html
+
 # Register your models here.
+admin.site.register(models.Author)
 
 
 class RatingFilter(admin.SimpleListFilter):
@@ -40,7 +44,7 @@ class RatingFilter(admin.SimpleListFilter):
 
 @admin.register(models.Book)
 class BookAdmin(admin.ModelAdmin):
-    list_display = ("__str__", "author", "rating", "is_best_seller")
+    list_display = ("__str__", "author_link", "rating", "is_best_seller")
     list_filter = (
         "is_best_seller",
         RatingFilter,
@@ -49,6 +53,19 @@ class BookAdmin(admin.ModelAdmin):
     prepopulated_fields = {
         "slug": ("title",),
     }
+
+    def author_link(self, obj):
+        url = reverse(
+            "admin:book_outlet_author_change",
+            args=[obj.author.pk]
+        )
+        return format_html(
+            '<a href="{}">{}</a>',
+            url,
+            obj.author,
+        )
+
+    author_link.short_description = "Author"
 
 
 # admin.site.register(models.Book, BookAdmin)
