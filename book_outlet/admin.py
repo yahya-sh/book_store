@@ -41,11 +41,13 @@ class RatingFilter(admin.SimpleListFilter):
 @admin.register(models.Book)
 class BookAdmin(admin.ModelAdmin):
     list_display = ("__str__", "author", "rating", "is_best_seller")
-    readonly_fields = ("slug",)
     list_filter = (
         "is_best_seller",
         RatingFilter,
     )
+    prepopulated_fields = {
+        "slug": ('title',),
+    }
 
 
 # admin.site.register(models.Book, BookAdmin)
