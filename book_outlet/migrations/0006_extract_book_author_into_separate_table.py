@@ -82,6 +82,8 @@ class Migration(migrations.Migration):
             field=models.ForeignKey(
                 to="book_outlet.author",
                 on_delete=models.RESTRICT,
+                related_name="books",
+
             ),
         ),
         migrations.AlterField(

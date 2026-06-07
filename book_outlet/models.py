@@ -18,7 +18,7 @@ class Author(models.Model):
 
 class Book(models.Model):
     title = models.CharField(max_length=150)
-    author = models.ForeignKey(Author, on_delete=models.RESTRICT)
+    author = models.ForeignKey(Author, on_delete=models.RESTRICT, related_name='books')
     rating = models.PositiveSmallIntegerField(
         validators=[
             MinValueValidator(1),
