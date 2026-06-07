@@ -4,7 +4,8 @@
   All Books
 {% endblock %}
 {% block content %}
-  <h1>All Books</h1>
+  <h1>All Books ({{ total_count }} Books)</h1>
+  <h2>Overall rating: {{ rating_avg|floatformat:1 }} of 5</h2>
   <ul>
     {% for book in book_list %}
       <li>
@@ -13,7 +14,9 @@
             <strong>{{ book.title }}</strong>
           </p>
         </a>
-        <p><small>Author: {{ book.author }}</small></p>
+        <p>
+          <small>Author: {{ book.author }}</small>
+        </p>
         <p>
           <small>Rating: {{ book.rating }} of 5</small>
         </p>
